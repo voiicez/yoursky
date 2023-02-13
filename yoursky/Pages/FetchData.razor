@@ -4,16 +4,20 @@
 @inject IHttpClientFactory ClientFactory
 @using MudBlazor;
 
-<h1>Call web API from a Blazor Server Razor component</h1>
+<h1>See the space photo of the day when you were born</h1>
 
 
-    <MudInput Required="true"RequiredError="Birthday Date Required." T="string" @bind-Value="tarih"/>
-    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="test">See your Sky</MudButton>
- 
+<MudContainer Class="pa-4 ma-3 d-flex justify-space-around">
+    
+    <MudInput Class="" Required="true" RequiredError="Birthday Date Required." T="string" @bind-Value="tarih" />
+    
+  
+    <MudButton class="object-fill" Variant="Variant.Filled" Color="Color.Primary" OnClick="test">See your Sky</MudButton>
+</MudContainer>
 
 @if (getBranchesError)
 {
-    <p>Unable to get branches from GitHub. Please try again later.</p>
+    <p>Hata. Lütfen sonra tekrar deneyin.</p>
 }
 else
 {
