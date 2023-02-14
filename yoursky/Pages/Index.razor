@@ -1,10 +1,85 @@
 ﻿@page "/"
 
-<PageTitle>Index</PageTitle>
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IHttpClientFactory ClientFactory
+@using MudBlazor;
 
-<h1>Hello, world!</h1>
 
-Welcome to your new app.
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<div class="d-flex flex-column">
 
+
+    <h1>See Your Sky</h1>
+    <obje>
+        <b>
+            NASA publishes "Astronomy Picture of the Day" since June 16, 1995. Thanks to me, you can write any date and see the picture of that day!
+        </b>
+    </obje>
+
+    <MudTextField Class="align-self-center justify-self-center mt-6" Margin="Margin.Dense" Label="yyyy/mm/dd" Mask="@mask1" Required="true" Variant="Variant.Outlined" RequiredError="Date is Required." T="string" @bind-Value="tarih" style="width: 150px" />
+    
+        <MudButton Class="align-self-center rounded-pill mt-6" Variant="Variant.Filled" Color="Color.Primary" OnClick="test">LET'S SEE!</MudButton>
+        
+            
+            <MudImage Class="align-self-center justify-self-center mt-6" Src="@branches.link" />
+       
+
+    
+            
+</div>
+<bson class="d-flex">all the context after you press the button is covered by NASA.</bson>
+<a href="https://twitter.com/behlulcansahin"><bsons class="d-flex">Behlül Sahin</bsons></a>
+
+
+@if (getBranchesError)
+{
+    <p>Hata. Lütfen sonra tekrar deneyin.</p>
+}
+
+
+@code {
+    private GitHubBranch branches = new GitHubBranch();
+    private bool getBranchesError;
+    private bool shouldRender;
+    IMask mask1 = new DateMask("yyyy-MM-dd");
+    [Parameter]
+    public string tarih { get; set; }
+    protected override bool ShouldRender() => shouldRender;
+
+    public async void test()
+    {
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            "https://api.nasa.gov/planetary/apod?date=" + tarih + "&api_key=z7k6C5dqWmsXJgvtmBcck4gSVl9YmfCYguAg3Sqv");
+        request.Headers.Add("Accept", "application/vnd.github.v3+json");
+        request.Headers.Add("User-Agent", "HttpClientFactory-Sample");
+
+        var client = ClientFactory.CreateClient();
+
+        var response = await client.SendAsync(request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            using var responseStream = await response.Content.ReadAsStreamAsync();
+            branches = await JsonSerializer.DeserializeAsync
+               <GitHubBranch>(responseStream);
+        }
+        else
+        {
+            getBranchesError = true;
+        }
+
+        shouldRender = true;
+        StateHasChanged();
+    }
+
+    public class GitHubBranch
+    {
+        [JsonPropertyName("explanation")]
+        public string Aciklama { get; set; }
+        [JsonPropertyName("date")]
+        public DateTime Date { get; set; }
+        [JsonPropertyName("hdurl")]
+        public string link { get; set; }
+    }
+}
