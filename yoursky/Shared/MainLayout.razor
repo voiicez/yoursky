@@ -1,16 +1,47 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>YourSky</PageTitle>
+<PageTitle>SeeYourSky</PageTitle>
+
 <MudThemeProvider />
 <MudDialogProvider />
 <MudSnackbarProvider />
+<HeadContent>
+    <!-- Primary Meta Tags -->
+    <title>See the Astronomy Picture of The Day you were born!</title>
+    <meta name="title" content="SeeYourSky">
+    <meta name="description" content="See the Astronomy Picture of The Day you were born!">
+    
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seeyoursky.com/">
+    <meta property="og:title" content="SeeYourSky">
+    <meta property="og:description" content="See the Astronomy Picture of The Day you were born!">
+    <meta property="og:image" content="https://apod.nasa.gov/apod/image/1503/NGC602Web_goldman.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://seeyoursky.com/">
+    <meta property="twitter:title" content="SeeYourSky">
+    <meta property="twitter:description" content="See the Astronomy Picture of The Day you were born!">
+    <meta property="twitter:image" content="https://apod.nasa.gov/apod/image/1503/NGC602Web_goldman.jpg">
+</HeadContent>
+
 <div class="page">
     
 
     <main>
-        <div class="top-row px-1">
-            <a href="https://twitter.com/behlulcansahin" target="_blank"><MudIconButton Icon="@Icons.Custom.Brands.Twitter"/></a>
-        </div>
+        <MudAppBar Elevation="1" Fixed="false" Color="Color.Transparent">
+            <MudSpacer />
+            <NavLink class="nav-link" href="/">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink><NavLink class="nav-link" href="patrons">
+                <span class="oi oi-heart" aria-hidden="true"></span> Patrons
+            </NavLink>
+            <a href="https://twitter.com/behlulcansahin" target="_blank"><MudIconButton Icon="@Icons.Custom.Brands.Twitter" /></a>
+
+
+        </MudAppBar>
 
         <article class="content px-4">
             @Body

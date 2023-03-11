@@ -1,6 +1,12 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using MudBlazor.Services;
+using System.Globalization;
+using Blazorise;
+
+using Blazorise.Bootstrap;
+using Blazorise.Icons.FontAwesome;
+
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +14,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
+builder.Services
+    .AddBlazorise(options =>
+    {
+        options.Immediate = true;
+    })
+    .AddBootstrapProviders()
+    .AddFontAwesomeIcons();
+
 builder.Services.AddMudServices();
 builder.Services.AddHttpClient();
 
@@ -20,6 +34,15 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+var supportedCultures = new[] { "en-US" };
+var defaultCulture = "en-US";
+
+var cultureOptions = new RequestLocalizationOptions()
+    .SetDefaultCulture(defaultCulture)
+    .AddSupportedCultures(supportedCultures)
+    .AddSupportedUICultures(supportedCultures);
+
+app.UseRequestLocalization(cultureOptions);
 
 app.UseHttpsRedirection();
 

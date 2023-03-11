@@ -11,9 +11,15 @@
   <ItemGroup>
     <None Remove="MudBlazor" />
     <None Remove="Data\" />
+    <None Remove="Blazorise" />
+    <None Remove="Blazorise.Bootstrap" />
+    <None Remove="Blazorise.Icons.FontAwesome" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="MudBlazor" Version="6.1.8" />
+    <PackageReference Include="Blazorise" Version="1.2.0" />
+    <PackageReference Include="Blazorise.Bootstrap" Version="1.2.0" />
+    <PackageReference Include="Blazorise.Icons.FontAwesome" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />

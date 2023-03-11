@@ -1,0 +1,59 @@
+﻿@page "/patrons"
+
+@using System.Text.Json
+@using System.Text.Json.Serialization
+@inject IHttpClientFactory ClientFactory
+@using MudBlazor;
+@using System.Globalization;
+@using MudBlazor.Internal;
+@using Blazorise;
+@inject IJSRuntime JS
+@inject ISnackbar SB
+
+
+<div class="d-flex flex-column">
+    <h1 style="font-size:20px">this is a free service.</h1>
+    <h1 style="font-size:20px">Donate and help me to pay domain and hosting services.</h1>
+    <MudSimpleTable Class="mt-6" Style="overflow-x: auto;">
+        <thead>
+            <tr>
+                @foreach (var h in headings)
+                {
+                    <th>@h</th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in rows)
+            {
+                <tr>
+                    @foreach (var x in row.Split())
+                    {
+                        <td>@x</td>
+                    }
+                </tr>
+            }
+        </tbody>
+    </MudSimpleTable>
+
+
+
+</div>
+<bson class="d-flex">all the context after you press the button is covered by NASA.</bson>
+<a href="https://twitter.com/behlulcansahin"><bsons class="d-flex">Behlül Sahin</bsons></a>
+
+
+
+
+
+
+@code {
+    @code {
+        string[] headings = {"Name", "Country", "Amount", "Reach" };
+        string[] rows = {
+        @"Ş.Acar Turkey $4 -",
+        @"G.Burcu Turkey $4 twitter.com/bgnctrk ",
+        
+    };
+    }
+}
