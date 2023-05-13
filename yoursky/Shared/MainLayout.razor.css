@@ -2,10 +2,12 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    
 }
 
 main {
     flex: 1;
+    
 }
 
 .sidebar {
@@ -66,6 +68,24 @@ main {
     .top-row, article {
         padding-left: 2rem !important;
         padding-right: 1.5rem !important;
+    }
+    .reklam {
+        width: 700px;
+        height: 100px;
+        background-color: grey;
+        background-image: url(/reklam1.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    .reklam2 {
+        width: 700px;
+        height: 100px;
+        background-color: grey;
+        background-image: url(/reklam2.png);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 }
 

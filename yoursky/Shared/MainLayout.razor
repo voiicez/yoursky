@@ -10,7 +10,7 @@
     <title>See the Astronomy Picture of The Day you were born!</title>
     <meta name="title" content="SeeYourSky">
     <meta name="description" content="See the Astronomy Picture of The Day you were born!">
-    
+
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -28,9 +28,10 @@
 </HeadContent>
 
 <div class="page">
-    
+
 
     <main>
+
         <MudAppBar Elevation="1" Fixed="false" Color="Color.Transparent">
             <MudSpacer />
             <NavLink class="nav-link" href="/">
@@ -43,9 +44,57 @@
 
         </MudAppBar>
 
+
         <article class="content px-4">
+
+            <a href="mailto:behlulcansahin@gmail.com?subject=I%20Want%20To%20Reach%20Sky%20High%20Audiences!" id="reklam" class="reklam" style="@reklamDisplayStyle">
+                           </a>
+            <a href="mailto:behlulcansahin@gmail.com?subject=I%20Want%20To%20Reach%20Sky%20High%20Audiences!" id="reklam2" class="reklam2" style="@reklam2DisplayStyle">
+
+            </a>
             @Body
+
         </article>
     </main>
 </div>
+@code {
+    private string reklamDisplayStyle = "display: block;";
+    private string reklam2DisplayStyle = "display: none;";
+    private void HandleReklamClick()
+    {
+      
+        Console.WriteLine("Reklam clicked");
+    }
 
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await ToggleReklam();
+        }
+    }
+
+    private async Task ToggleReklam()
+    {
+        while (true)
+        {
+            await InvokeAsync(() =>
+            {
+                if (reklamDisplayStyle == "display: block;")
+                {
+                    reklamDisplayStyle = "display: none;";
+                    reklam2DisplayStyle = "display: block;";
+                }
+                else
+                {
+                    reklamDisplayStyle = "display: block;";
+                    reklam2DisplayStyle = "display: none;";
+                }
+
+                StateHasChanged();
+            });
+
+            await Task.Delay(5000); // Wait for 5 seconds before toggling again
+        }
+    }
+}
